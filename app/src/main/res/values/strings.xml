@@ -5,7 +5,9 @@
     <string name="color_title">Color</string>
     <string name="rgb_text">rgb:</string>
     <string name="hex_text">hex:</string>
-    <string name="switch_ui_button">Drawing Panel</string>
+    <string name="switch_ui_button">Doodler</string>
     <string name="home_button">Home</string>
     <string name="clear_button_text">Clear</string>
+    <string name="menu_text">Options</string>
+    <string name="color_change_button_text">Color</string>
 </resources>

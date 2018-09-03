@@ -1,20 +1,31 @@
 package com.nathandunn.homework_1;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+
+
 public class DoodleBoard extends View {
 
+
+    private Bitmap bitmap;
+    private Canvas canvas;
     private Path path = new Path();
     private Paint tool = new Paint();
+
     final float ALPHA = 1.0f;
     private float xpos = 0, ypos = 0;
+
+
     public DoodleBoard(Context con, AttributeSet attSet){
         super(con, attSet);
 
@@ -24,6 +35,12 @@ public class DoodleBoard extends View {
         tool.setStrokeWidth(15.0f);
         tool.setAntiAlias(true);
         tool.setStrokeJoin(Paint.Join.ROUND);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int prevW, int prevH) {
+        bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bitmap);
     }
 
     @Override
@@ -38,15 +55,15 @@ public class DoodleBoard extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
-               action_move(eventX, eventY);
+               actionMove(eventX, eventY);
                 Log.d("touch_event:", "action_move");
                 break;
             case MotionEvent.ACTION_DOWN:
-                action_down(eventX, eventY);
+                actionDown(eventX, eventY);
                 Log.d("touch_event", "action_down");
                 break;
             case MotionEvent.ACTION_UP:
-                action_up();
+                actionUp();
                 Log.d("touch_event", "action_up");
                 break;
         }
@@ -56,7 +73,7 @@ public class DoodleBoard extends View {
         return true;
     }
 
-    private void action_move(float x, float y){
+    private void actionMove(float x, float y){
         float diffX = Math.abs(x - xpos);
         float diffY = Math.abs(y - ypos);
 
@@ -68,22 +85,25 @@ public class DoodleBoard extends View {
         invalidate();
     }
 
-    private void action_down(float x, float y){
+    private void actionDown(float x, float y){
         xpos = x;
         ypos = y;
         path.moveTo(x, y);
         invalidate();
     }
 
-    private void action_up(){
+    private void actionUp(){
         path.moveTo(xpos, ypos);
         invalidate();
     }
 
-    public void clear_drawing(){
+    public void clearDoodle(){
         path.rewind();
         invalidate();
     }
 
+    public void setDoodleColor(int color){
+        tool.setColor(color);
+    }
 
 }
