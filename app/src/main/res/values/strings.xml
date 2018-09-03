@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Homework_1</string>
+    <string name="main_text">Tap to Change Color</string>
+    <string name="color_button_text">Change Color</string>
+    <string name="color_title">Color</string>
+    <string name="rgb_text">rgb:</string>
+    <string name="hex_text">hex:</string>
+    <string name="switch_ui_button">Drawing Panel</string>
+    <string name="home_button">Home</string>
+</resources>
