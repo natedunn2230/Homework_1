@@ -7,14 +7,17 @@ import android.view.View;
 import android.widget.Button;
 
 public class DoodleActivity extends AppCompatActivity {
-    private Button homeButton;
+    private Button homeButton, clearButton;
     private DoodleBoard doodleBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doodle);
+
         homeButton = findViewById(R.id.home_button);
+        clearButton = findViewById(R.id.clear_button);
+        doodleBoard = findViewById(R.id.doodle_board);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -23,6 +26,12 @@ public class DoodleActivity extends AppCompatActivity {
             }
         });
 
-        doodleBoard = findViewById(R.id.doodle_board);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                doodleBoard.clear_drawing();
+            }
+        });
+
     }
 }

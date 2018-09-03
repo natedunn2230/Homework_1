@@ -80,5 +80,10 @@ public class DoodleBoard extends View {
         invalidate();
     }
 
+    public void clear_drawing(){
+        path.rewind();
+        invalidate();
+    }
+
 
 }
