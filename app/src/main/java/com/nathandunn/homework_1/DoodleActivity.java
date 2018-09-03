@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 
 public class DoodleActivity extends AppCompatActivity {
-    Button homeButton;
+    private Button homeButton;
+    private DoodleBoard doodleBoard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,5 +23,6 @@ public class DoodleActivity extends AppCompatActivity {
             }
         });
 
+        doodleBoard = findViewById(R.id.doodle_board);
     }
 }
