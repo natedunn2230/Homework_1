@@ -12,29 +12,25 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
 
 
 public class DoodleBoard extends View {
 
+    ArrayList<Line> lines = new ArrayList<>();
 
     private Bitmap bitmap;
     private Canvas canvas;
-    private Path path = new Path();
-    private Paint tool = new Paint();
 
     final float ALPHA = 1.0f;
     private float xpos = 0, ypos = 0;
 
+    private int currentColor = -10000;
+    private int currentLineIndex = -1;
 
     public DoodleBoard(Context con, AttributeSet attSet){
         super(con, attSet);
 
-        //set attributes of the tool that draws to the canvas
-        tool.setARGB(255,255,0,0);
-        tool.setStyle(Paint.Style.STROKE);
-        tool.setStrokeWidth(15.0f);
-        tool.setAntiAlias(true);
-        tool.setStrokeJoin(Paint.Join.ROUND);
     }
 
     @Override
@@ -45,7 +41,9 @@ public class DoodleBoard extends View {
 
     @Override
     public void onDraw(Canvas canvas){
-        canvas.drawPath(path, tool);
+        for(Line line: lines){
+            canvas.drawPath(line.getPath(), line.getTool());
+        }
     }
 
     @Override
@@ -78,7 +76,7 @@ public class DoodleBoard extends View {
         float diffY = Math.abs(y - ypos);
 
         if (diffX >= ALPHA|| diffY >= ALPHA) {
-            path.quadTo(xpos, ypos,(x + xpos)/2, (y + ypos)/2);
+            lines.get(currentLineIndex).getPath().quadTo(xpos, ypos,(x + xpos)/2, (y + ypos)/2);
             xpos = x;
             ypos = y;
         }
@@ -86,24 +84,29 @@ public class DoodleBoard extends View {
     }
 
     private void actionDown(float x, float y){
+        currentLineIndex++;
+        lines.add(new Line(currentColor));
         xpos = x;
         ypos = y;
-        path.moveTo(x, y);
+        lines.get(currentLineIndex).getPath().moveTo(x, y);
         invalidate();
+        Log.d("lineIndex", currentLineIndex + "");
     }
 
     private void actionUp(){
-        path.moveTo(xpos, ypos);
+        lines.get(currentLineIndex).getPath().moveTo(xpos, ypos);
         invalidate();
     }
 
     public void clearDoodle(){
-        path.rewind();
+        for(Line line: lines){
+            line.getPath().rewind();
+        }
         invalidate();
     }
 
     public void setDoodleColor(int color){
-        tool.setColor(color);
+        currentColor = color;
     }
 
 }

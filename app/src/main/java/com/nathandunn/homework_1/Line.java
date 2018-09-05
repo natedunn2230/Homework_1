@@ -8,12 +8,12 @@ public class Line {
     private Path path;
     private Paint tool;
 
-    public Line(){
+    public Line(int color){
         path = new Path();
         tool = new Paint();
 
         //set attributes of the tool that draws to the canvas
-        tool.setARGB(255,255,0,0);
+        tool.setColor(color);
         tool.setStyle(Paint.Style.STROKE);
         tool.setStrokeWidth(15.0f);
         tool.setAntiAlias(true);
@@ -28,7 +28,4 @@ public class Line {
         return this.tool;
     }
 
-    public void setToolColor(int color){
-        this.tool.setColor(color);
-    }
 }
