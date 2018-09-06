@@ -1,16 +1,15 @@
 package com.nathandunn.homework_1;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.Color;
 
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
 
 import java.util.ArrayList;
 
@@ -35,6 +34,7 @@ public class DoodleBoard extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int prevW, int prevH) {
+        super.onSizeChanged(w, h, prevW, prevH);
         bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
     }
@@ -90,7 +90,6 @@ public class DoodleBoard extends View {
         ypos = y;
         lines.get(currentLineIndex).getPath().moveTo(x, y);
         invalidate();
-        Log.d("lineIndex", currentLineIndex + "");
     }
 
     private void actionUp(){
@@ -107,6 +106,23 @@ public class DoodleBoard extends View {
 
     public void setDoodleColor(int color){
         currentColor = color;
+    }
+
+    public Bitmap getImage(){
+        // settings to draw to bitmap
+        this.setDrawingCacheEnabled(true);
+        this.buildDrawingCache();
+
+        //convert empty black background to a white background
+        Bitmap foregroundBitMap = Bitmap.createBitmap(this.getDrawingCache());
+        Bitmap completeBitmap = Bitmap.createBitmap(foregroundBitMap.getWidth(), foregroundBitMap.getHeight(), foregroundBitMap.getConfig());
+        Canvas backgroundCanvas = new Canvas(completeBitmap);
+        backgroundCanvas.drawColor(Color.WHITE);
+        backgroundCanvas.drawBitmap(foregroundBitMap,  0 , 0, null);
+
+        this.setDrawingCacheEnabled(false);
+
+       return completeBitmap;
     }
 
 }

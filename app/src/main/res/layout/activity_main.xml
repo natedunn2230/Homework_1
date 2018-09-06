@@ -16,7 +16,7 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/main_text"
+        android:hint="@string/main_text"
         android:textSize="20sp" />
 
     <Button

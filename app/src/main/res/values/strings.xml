@@ -10,4 +10,5 @@
     <string name="clear_button_text">Clear</string>
     <string name="menu_text">Options</string>
     <string name="color_change_button_text">Color</string>
+    <string name="save_button_text">Save</string>
 </resources>
