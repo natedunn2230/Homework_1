@@ -20,19 +20,19 @@
         android:background="@color/colorPrimaryDark" />
 
     <View
-        android:id="@+id/menu_background"
+        android:id="@+id/doodle_menu_background"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_below="@+id/doodle_divider"
-        android:layout_alignBottom="@id/save_button"
-        android:layout_alignRight="@+id/home_button"
-        android:layout_alignEnd="@+id/home_button"
-        android:layout_alignLeft="@+id/home_button"
-        android:layout_alignStart="@+id/home_button"
+        android:layout_alignBottom="@id/doodle_save_button"
+        android:layout_alignRight="@+id/doodle_home_button"
+        android:layout_alignEnd="@+id/doodle_home_button"
+        android:layout_alignLeft="@+id/doodle_home_button"
+        android:layout_alignStart="@+id/doodle_home_button"
         android:background="@color/colorAccent" />
 
     <TextView
-        android:id="@+id/menu_text_view"
+        android:id="@+id/doodle_menu_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/doodle_divider"
@@ -41,34 +41,34 @@
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/clear_button"
+        android:id="@+id/doodle_clear_button"
         android:layout_width="125dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/menu_text_view"
+        android:layout_below="@+id/doodle_menu_text"
         android:layout_centerHorizontal="true"
         android:text="@string/clear_button_text"
         android:textSize="15sp" />
 
     <Button
-        android:id="@+id/color_change_button"
+        android:id="@+id/doodle_color_change_button"
         android:layout_width="125dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/clear_button"
+        android:layout_below="@+id/doodle_clear_button"
         android:layout_centerHorizontal="true"
         android:text="@string/color_change_button_text"
         android:textSize="15sp" />
 
     <Button
-        android:id="@+id/save_button"
+        android:id="@+id/doodle_save_button"
         android:layout_width="125dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/color_change_button"
+        android:layout_below="@+id/doodle_color_change_button"
         android:layout_centerHorizontal="true"
         android:text="@string/save_button_text"
         android:textSize="15sp" />
 
     <Button
-        android:id="@+id/home_button"
+        android:id="@+id/doodle_home_button"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
