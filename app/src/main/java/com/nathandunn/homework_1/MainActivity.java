@@ -1,9 +1,7 @@
 package com.nathandunn.homework_1;
 
-import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,10 +12,14 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+/**
+* Class handles the user interactions with the home screen
+ */
 public class MainActivity extends AppCompatActivity {
 
+    //global variables to hold components of the home screen
     private int red, green, blue;
-    private Button colorButton, switchUIButton;
+    private Button colorButton, doodleButton;
     private EditText colorText;
     private TextView rgbTextView, hexTextView;
 
@@ -28,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         colorButton = findViewById(R.id.main_color_button);
-        switchUIButton = findViewById(R.id.main_doodle_button);
+        doodleButton = findViewById(R.id.main_doodle_button);
 
+        // change the text color and display the color values when color button is pressed
         colorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        switchUIButton.setOnClickListener(new View.OnClickListener(){
+        //switch to Doodle board when switchUI button is pressed
+        doodleButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 startActivity(new Intent(MainActivity.this, DoodleActivity.class));
@@ -47,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Changes the color of the text the user types into the textbox field
+     */
     private void changeTextColor(){
         Random generator = new Random();
         red = generator.nextInt(255);
@@ -57,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         colorText.setTextColor(Color.rgb(red, green, blue));
     }
 
+    /**
+     * Displays the color values of the textbox
+     */
     private void displayTextColor(){
         rgbTextView = findViewById(R.id.main_rgb_text);
         hexTextView = findViewById(R.id.main_hex_text);

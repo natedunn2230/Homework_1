@@ -23,6 +23,9 @@ import me.priyesh.chroma.ChromaDialog;
 import me.priyesh.chroma.ColorMode;
 import me.priyesh.chroma.ColorSelectListener;
 
+/**
+ * This class instantiates the doodle board
+ */
 public class DoodleActivity extends AppCompatActivity {
     private Button homeButton, clearButton, colorButton, saveButton;
     private DoodleBoard doodleBoard;
@@ -49,7 +52,7 @@ public class DoodleActivity extends AppCompatActivity {
         colorPicker = new ChromaDialog();
 
 
-        //button handlers
+        // Return to the home screen
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -57,6 +60,7 @@ public class DoodleActivity extends AppCompatActivity {
             }
         });
 
+        //clear the doodle board
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -64,6 +68,7 @@ public class DoodleActivity extends AppCompatActivity {
             }
         });
 
+        // Display the color picker when the user clicks on the color button
         colorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -78,6 +83,7 @@ public class DoodleActivity extends AppCompatActivity {
             }
         });
 
+        //save the image
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +93,9 @@ public class DoodleActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Saves the doodle that the user drew
+     */
     private void saveImage() {
         Bitmap bitMap = doodleBoard.getImage();
         FileOutputStream output;
@@ -95,15 +104,14 @@ public class DoodleActivity extends AppCompatActivity {
         Random generator = new Random();
         int bound = 10000;
 
-
+        // base file directory
         File baseDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         String imageFileName = String.format("doodle_%d.png", generator.nextInt(bound));
 
         try {
-            Log.d("here", "got here somehow");
+
             if(!baseDir.exists()){
                 baseDir.mkdirs();
-                Log.d("picture_dir_status", "created");
             }
 
             //file to be saved
@@ -113,12 +121,14 @@ public class DoodleActivity extends AppCompatActivity {
                 pictureFile.delete();
             }
 
+            // save the bitmap image created from the users drawing
             output = new FileOutputStream(pictureFile);
             bitMap.compress(Bitmap.CompressFormat.PNG, 100, output);
             output.flush();
             output.close();
             Toast.makeText(getApplicationContext(), "Image saved", Toast.LENGTH_SHORT).show();
 
+            //update the picture folder to display the newly saved doodle
             MediaScannerConnection.scanFile(getApplicationContext(), new String[]{pictureFile.getPath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
                 @Override
                 public void onScanCompleted(String path, Uri uri) {

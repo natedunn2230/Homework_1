@@ -13,7 +13,10 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-
+/**
+ * The DoodleBoard class creates an interactive environment for the
+ * user to draw pictures
+ */
 public class DoodleBoard extends View {
 
     ArrayList<Line> lines = new ArrayList<>();
@@ -32,6 +35,13 @@ public class DoodleBoard extends View {
 
     }
 
+    /**
+     * Resizes the canvas
+     * @param w current width of the canvas
+     * @param h current height of the canvas
+     * @param prevW previous width of the canvas (prior to size change, if any)
+     * @param prevH previous height of the canvas (prior to size change, if any)
+     */
     @Override
     protected void onSizeChanged(int w, int h, int prevW, int prevH) {
         super.onSizeChanged(w, h, prevW, prevH);
@@ -39,6 +49,10 @@ public class DoodleBoard extends View {
         canvas = new Canvas(bitmap);
     }
 
+    /**
+     * Draws to the canvas
+     * @param canvas canvas to be drawn on
+     */
     @Override
     public void onDraw(Canvas canvas){
         for(Line line: lines){
@@ -46,57 +60,82 @@ public class DoodleBoard extends View {
         }
     }
 
+    /**
+     * Handles the touch events emitted by the user.
+     * @param event Type of event the user emits to the screen
+     * @return always returns true if an event occurs
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float eventX = event.getX();
         float eventY = event.getY();
 
+        // Delegate tasks based off the users interactions with the doodle board
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
                actionMove(eventX, eventY);
-                Log.d("touch_event:", "action_move");
                 break;
             case MotionEvent.ACTION_DOWN:
                 actionDown(eventX, eventY);
-                Log.d("touch_event", "action_down");
                 break;
             case MotionEvent.ACTION_UP:
                 actionUp();
-                Log.d("touch_event", "action_up");
                 break;
         }
 
-        Log.d("touch_coords", String.format("(%f, %f)", xpos, ypos));
+        // invoke the draw call
         postInvalidate();
         return true;
     }
 
+    /**
+     * Draws a line in the path that the user drags their finger across the screen
+     * @param x new x coordinate of the path
+     * @param y new y coordinate of the path
+     */
     private void actionMove(float x, float y){
         float diffX = Math.abs(x - xpos);
         float diffY = Math.abs(y - ypos);
 
+        // if the tolerance is higher than alpha (1px, 1px) draw the new path
         if (diffX >= ALPHA|| diffY >= ALPHA) {
             lines.get(currentLineIndex).getPath().quadTo(xpos, ypos,(x + xpos)/2, (y + ypos)/2);
             xpos = x;
             ypos = y;
         }
+
+        // invoke the draw call
         invalidate();
     }
 
+    /**
+     * Determines the location of the finger when pressed down on the screen
+     * @param x new x coordinate where the user initially touches the screen
+     * @param y new y coordinate where the user initially touches the screen
+     */
     private void actionDown(float x, float y){
         currentLineIndex++;
         lines.add(new Line(currentColor));
         xpos = x;
         ypos = y;
         lines.get(currentLineIndex).getPath().moveTo(x, y);
+
+        //invoke draw call
         invalidate();
     }
 
+    /**
+     * Determines the location of the users finger when it is lifted off the
+     * screen
+     */
     private void actionUp(){
         lines.get(currentLineIndex).getPath().moveTo(xpos, ypos);
         invalidate();
     }
 
+    /**
+     * Clears the doodle board
+     */
     public void clearDoodle(){
         for(Line line: lines){
             line.getPath().rewind();
@@ -104,10 +143,17 @@ public class DoodleBoard extends View {
         invalidate();
     }
 
+    /**
+     * Sets the current doodle color
+     */
     public void setDoodleColor(int color){
         currentColor = color;
     }
 
+    /**
+     * Maps the foreground bitmap that the user drew to a white canvas and returns it
+     * @return Bitmap to be saved to the device
+     */
     public Bitmap getImage(){
         // settings to draw to bitmap
         this.setDrawingCacheEnabled(true);
