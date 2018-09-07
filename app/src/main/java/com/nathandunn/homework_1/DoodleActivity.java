@@ -40,10 +40,10 @@ public class DoodleActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
 
         //buttons
-        homeButton = findViewById(R.id.home_button);
-        clearButton = findViewById(R.id.clear_button);
-        colorButton = findViewById(R.id.color_change_button);
-        saveButton = findViewById(R.id.save_button);
+        homeButton = findViewById(R.id.doodle_home_button);
+        clearButton = findViewById(R.id.doodle_clear_button);
+        colorButton = findViewById(R.id.doodle_color_change_button);
+        saveButton = findViewById(R.id.doodle_save_button);
 
         //custom doodle board
         doodleBoard = findViewById(R.id.doodle_board);
