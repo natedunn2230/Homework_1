@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/color_edit_text"
+        android:id="@+id/main_color_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -20,54 +20,53 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/color_button"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
+        android:id="@+id/main_color_button"
+        android:layout_width="254dp"
+        android:layout_height="101dp"
+        android:layout_below="@id/main_color_edit_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="25dp"
         android:text="@string/color_button_text"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/color_title"
+        android:id="@+id/main_color_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
+        android:layout_below="@id/main_color_button"
+        android:layout_marginTop="25dp"
         android:text="@string/color_title"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/rgbText"
+        android:id="@+id/main_rgb_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/color_button"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/color_button"
-        android:layout_marginTop="300dp"
+        android:layout_alignLeft="@+id/main_color_button"
+        android:layout_alignStart="@+id/main_color_button"
+        android:layout_below="@id/main_color_text"
+        android:layout_marginTop="15dp"
         android:text="@string/rgb_text" />
 
     <TextView
-        android:id="@+id/hexText"
+        android:id="@+id/main_hex_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/rgbText"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/rgbText"
-        android:layout_marginTop="350dp"
+        android:layout_alignLeft="@+id/main_rgb_text"
+        android:layout_alignStart="@+id/main_rgb_text"
+        android:layout_below="@id/main_rgb_text"
+        android:layout_marginTop="15dp"
         android:text="@string/hex_text" />
 
     <Button
-        android:id="@+id/switchUI"
+        android:id="@+id/main_doodle_button"
         android:layout_width="250dp"
         android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="150dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/main_hex_text"
         android:text="@string/switch_ui_button"
         android:textSize="20sp" />
-
 
 </RelativeLayout>
