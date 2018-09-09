@@ -24,16 +24,12 @@ Homework 1 is an Android application consisting of two parts:
 | :-----------------------------: |
 |         User Interface          |
 
+| ![img](resources/part1_textfield.png)                        |
+| :----------------------------------------------------------- |
+| Tapping the textfield allows the user to type in anything they desire. |
 
-
-|            ![img](resources/part1_textfield.png)             |
-| :----------------------------------------------------------: |
-| Tapping the texfield allows the user to type in anything they desire. |
-
-    
-
-|           ![img](resources/part1_color_change.png)           |
-| :----------------------------------------------------------: |
+| ![img](resources/part1_color_change.png)                     |
+| :----------------------------------------------------------- |
 | Tapping "Change Color" button changes the text of the user typed in and displays the color values in RGB and hexadecimal.  Clicking the "Doodler" button will take the user to part two of the homework application. |
 
 + ##### *Part Two*
