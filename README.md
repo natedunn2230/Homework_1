@@ -1,6 +1,7 @@
-Homework 1
+# Homework 1
 
-#####[Project Link (Github)](https://github.com/natedunn2230/Homework_1)
+[Project Link (Github)](https://github.com/natedunn2230/Homework_1)
+
 ##### Nathan Dunn
 ##### Dr. Doran
 ##### CEG 4110-01
@@ -38,21 +39,28 @@ Homework 1 is an Android application consisting of two parts:
 + ##### *Part Two*
 
 | ![img](resources/part2_screen.png) |
-| :--------------------------------: |
-|           User Interface           |
+| :--------------------------------- |
+| User Interface                     |
 
-|           ![img](resources/part2_single_color.png)           |
-| :----------------------------------------------------------: |
+| ![img](resources/part2_single_color.png)                     |
+| :----------------------------------------------------------- |
 | The top half of the screen serves as a canvas to paint on. If the user wishes to change colors, they can select the "color" button to do so. |
 
-|           ![img](resources/part2_color_picker.png)           |
-| :----------------------------------------------------------: |
+| ![img](resources/part2_color_picker.png)                     |
+| :----------------------------------------------------------- |
 | The color picker allows the user to select a color using RGB. |
 
-|            ![img](resources/part2_full_image.png)            |
-| :----------------------------------------------------------: |
+| ![img](resources/part2_full_image.png)                       |
+| :----------------------------------------------------------- |
 | After drawing a colorful picture, the user has the option to clear the canvas to restart, or save the image. |
 
-|        ![img](resources/part2_show_save_location.png)        |
-| :----------------------------------------------------------: |
+| ![img](resources/part2_show_save_location.png)               |
+| :----------------------------------------------------------- |
 | In order to view a saved drawing, the user can navigate to downloads (or files, depending on OS version) and under images, the drawing  can be found. |
+
+
+
+### Design Patterns
+
+
+
