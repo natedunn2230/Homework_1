@@ -10,7 +10,7 @@
 Homework 1 is an Android application consisting of two parts:
 
 + ##### *Part One*
-  Allows the user to change the color of text they enter into a text field. The values of the colors are displayed in hexadecimal and rgb.
+  Allows the user to change the color of text they enter into a text field. The values of the colors are displayed in hexadecimal and RGB.
 + ##### *Part Two*
   Contains a drawing panel that the user can doodle on.  The doodle can be saved to the device running the application. The user can clear the panel when desired and draw in a variety of colors with a color picker.
 
@@ -61,11 +61,13 @@ Homework 1 is an Android application consisting of two parts:
 
 | ![img](resources/part2_show_save_location.png)               |
 | :----------------------------------------------------------- |
-| *In order to view a saved drawing, the user can navigate to downloads (or files, depending on OS version) and under images, the drawing  can be found.* |
+| *In order to view a saved drawing, the user can navigate to downloads (or files, depending on OS version) and under images, the drawing can be found in a folder titled **pictures**.* |
 
 
 
 ### Design Patterns
+
+I decided to implement Activity classes (android defaults to this), to handle application state and scenes. Other classes, such as DoodleBoard and Line were built to implement into scenes for the user to interact with.
 
 ##### *Included Libraries*
 
@@ -73,7 +75,15 @@ Homework 1 is an Android application consisting of two parts:
 
 ##### *Class Functionality*
 
++ *_MainActivity_*.java
+  + The purpose of this class is to set the instance of an activity (scene) for part one of the application. Buttons and other widgets created in *main_activity.xml* (layout/styling file) can be referenced and stored as variables in this class. User interaction, such as on click handlers are also implemented. This class holds logic for creating random colors for the text field and updating  text to display the values of the random colors.  
++ DoodleActivity.java
+  + This class is very similar to *MainActivity.java* in the sense that it holds references to widgets from its layout file, *doodle_activity.xml* and handles user interaction. This class implements a method called *saveImage* which saves the drawing that the user has created. Also within this class, the application asks the user for permission to access its device's storage.
++ Line.java
+  + Line holds two android graphics classes: *Paint* and *Path*. Paint acts like a painter's brush and contains attributes such as stroke width, color, transparency, etc. Path holds the coordinates that the Paint draws to the screen, essentially creating a "path"  of paint values. Mapping these together in an array (In *DoodleBoard*) allows me to create a panel that supports multiple colors.  A new "line" object is created every time the user places their finger on the screen.
 
++ DoodleBoard.java
+  + This class holds the structure and logic contained within the drawing board. Using the built-in android graphics library, I constructed an interactive drawing panel.  This class contains methods such as *onDraw* which draws my custom Lines(referenced above) to the screen, and *onTouchEvent*, which handles user input on the panel, such as the user dragging their finger across the screen. 
 
 
 
